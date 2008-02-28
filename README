@@ -1,0 +1,19 @@
+Motivation
+----------
+Sometimes you have an itty bitty and slowly-changing bit of stuff to put on the
+web, so you write an itty bitty static website.
+
+Then you realize you occasionally want to add content to it, and you want to
+let people subscribe to that content with a newsreader.
+
+For example, you wrote an itty bitty application, and you might release bugfix
+versions every few months. 
+
+Setting up a CMS is more effort than is needed in this situation. Hand-editing
+an RSS file is a pain. What you need is a simple way to quickly generate RSS
+from human-friendly plain text. This is why you need SARS.
+
+Synopsis
+--------
+vim example.txt
+sars example.txt > example.xml

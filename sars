@@ -1,0 +1,39 @@
+#! /usr/bin/env ruby
+require 'rubygems' rescue nil
+require 'yaml'
+require 'erb'
+require 'bluecloth'
+
+stream = YAML.load_stream(ARGF.read)
+channel = stream[0]
+items = stream[1..-1]
+
+include ERB::Util
+template = ERB.new <<EOF
+<?xml version="1.0"?>
+<rss version="2.0">
+   <channel>
+      <title><%= h channel['title'] %></title>
+      <link><%= h channel['link'] %></link>
+      <description><%= h channel['description'] %></description>
+      <lastBuildDate><%= h Time.now.rfc822 %></lastBuildDate>
+      <generator>yaml2rss</generator>
+      <webMaster><%= h channel['webMaster'] %></webMaster>
+<% 
+for item in items do
+  title, date, body = item.split("\n",3)
+  date = Time.parse(date)
+  body = BlueCloth.new(body).to_html
+%>
+      <item>
+         <title><%= h title %></title>
+         <description><%= h body %></description>
+         <pubDate><%= h date.rfc822 %></pubDate>
+         <guid><%= h "\#{channel['link']}/\#{date.iso8601}" %></guid>
+      </item>
+<% end %>
+   </channel>
+</rss>
+EOF
+
+puts template.result(binding)
