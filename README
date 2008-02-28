@@ -17,3 +17,10 @@ Synopsis
 --------
 vim example.txt
 sars example.txt > example.xml
+
+Requirements
+------------
+Ruby[1] and BlueCloth[2]
+
+1. http://ruby-lang.org
+2. http://www.deveiate.org/projects/BlueCloth
