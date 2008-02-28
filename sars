@@ -29,7 +29,7 @@ for item in items do
          <title><%= h title %></title>
          <description><%= h body %></description>
          <pubDate><%= h date.rfc822 %></pubDate>
-         <guid><%= h "\#{channel['link']}/\#{date.iso8601}" %></guid>
+         <guid><%= h "\#{channel['link']}?date=\#{date.iso8601}" %></guid>
       </item>
 <% end %>
    </channel>
