@@ -3,6 +3,7 @@ require 'rubygems' rescue nil
 require 'yaml'
 require 'erb'
 require 'bluecloth'
+require 'time'
 
 stream = YAML.load_stream(ARGF.read)
 channel = stream[0]
